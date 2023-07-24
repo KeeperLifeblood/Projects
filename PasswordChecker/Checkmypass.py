@@ -24,7 +24,7 @@ class App(ctk.CTk):
         self.entry_1 = ctk.CTkEntry(master=self.frame_1, placeholder_text="Introduce tu Password")
         self.entry_1.pack(pady=10, padx=10)
 
-        self.button = ctk.CTkButton(master=self.frame_1, text= "Verificar", command=None)
+        self.button = ctk.CTkButton(master=self.frame_1, text= "Verificar", command=self.verify_password)
         self.button.pack(padx=20,pady=20)
 
 
@@ -32,7 +32,7 @@ class App(ctk.CTk):
 
 
 # Funcines de la App
-    def request_api_data(query_char):  # Hace el llamado a la API
+    def request_api_data(self,query_char):  # Hace el llamado a la API
         url = 'https://api.pwnedpasswords.com/range/' + query_char
         res = requests.get(url)
         if res.status_code != 200:
@@ -41,7 +41,7 @@ class App(ctk.CTk):
 
 
     # Cuenta cuantas veces se ha encontrado la constraseña en la API
-    def get_password_leak_count(hashes, hash_to_check):
+    def get_password_leak_count(self,hashes, hash_to_check):
         hashes = (line.split(":") for line in hashes.text.splitlines())
         for h, count in hashes:
             if h == hash_to_check:
@@ -49,20 +49,25 @@ class App(ctk.CTk):
         return 0
 
 
-    def pwned_api_check(password):  # Revisa si la contraseña existe en la API
+    def pwned_api_check(self,password):  # Revisa si la contraseña existe en la API
         sha1password = hashlib.sha1(password.encode("utf-8")).hexdigest().upper()
         first5_char, tail = sha1password[:5], sha1password[5:]
-        response = request_api_data(first5_char)
+        response = self.request_api_data(first5_char)
         # print(response)
-        return get_password_leak_count(response, tail)
+        return self.get_password_leak_count(response, tail)
 
 
-    def main(args):
-        count = pwned_api_check(args)
-        if count:
-            print(f'{args} fué encontrado {count} veces, deberías cambiarlo.')
-        else:
-            print(f'{args} no fué encontrado, Puedes continuar usándolo')
+    def verify_password(self):
+            password = self.entry_1.get()
+            count = self.pwned_api_check(password)
+            if count:
+                ctk.CTk.messagebox.showwarning("Contraseña comprometida",
+                                        f'{password} fue encontrado {count} veces, deberías cambiarlo.')
+            else:
+                ctk.CTk.messagebox.showinfo("Contraseña segura",
+                                        f'{password} no fue encontrado, puedes continuar usándolo.')
+
+
 
 
 if __name__ == '__main__':
