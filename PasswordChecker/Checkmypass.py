@@ -1,5 +1,6 @@
 import tkinter as tk
 import customtkinter as ctk
+from CTkMessagebox import CTkMessagebox
 import hashlib
 import requests
 
@@ -61,11 +62,14 @@ class App(ctk.CTk):
             password = self.entry_1.get()
             count = self.pwned_api_check(password)
             if count:
-                ctk.CTk.messagebox.showwarning("Contraseña comprometida",
-                                        f'{password} fue encontrado {count} veces, deberías cambiarlo.')
+                msg = f"{password} fue encontrado {count} veces, deberías cambiarlo."
+                
+                CTkMessagebox(title="Contraseña comprometida!", message= msg, icon="warning") 
+
             else:
-                ctk.CTk.messagebox.showinfo("Contraseña segura",
-                                        f'{password} no fue encontrado, puedes continuar usándolo.')
+                msg2 = f"{password} no fue encontrado, puedes continuar usándolo."
+                
+                CTkMessagebox(title="Contraseña segura!", message= msg2, icon="check")
 
 
 
