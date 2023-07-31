@@ -10,18 +10,24 @@ ctk.set_appearance_mode("sys")  # Modes: "System" (standard), "Dark", "Light"
 ctk.set_default_color_theme("dark-blue")  # Themes: "blue" (standard), "green", "dark-blue"
 
 
+# Clase principal de la APP con los widgets
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
         # Configuraciones d ela ventana principal
-        self.geometry("400x450")
+        self.geometry("300x350")
         self.title("CheckMyPass")
+        self.resizable(False, False)
 
         #Configuración del grid en la ventana
         self.frame_1 = ctk.CTkFrame(self)
         self.frame_1.pack(pady=20, padx=20, fill="both", expand=True)
 
         #Configuración de Widgets
+        # Eticqueta con el logo
+        self.logo_label = ctk.CTkLabel(self.frame_1, text="CheckMyPass", font=ctk.CTkFont(size=20, weight="bold"))
+        self.logo_label.pack(padx=20, pady=(20, 10))
+        
         self.entry_1 = ctk.CTkEntry(master=self.frame_1, placeholder_text="Introduce tu Password")
         self.entry_1.pack(pady=10, padx=10)
 
@@ -62,12 +68,12 @@ class App(ctk.CTk):
             password = self.entry_1.get()
             count = self.pwned_api_check(password)
             if count:
-                msg = f"{password} fue encontrado {count} veces, deberías cambiarlo."
+                msg = f"{password} fue encontrada {count} veces, deberías cambiarlo."
                 
                 CTkMessagebox(title="Contraseña comprometida!", message= msg, icon="warning") 
 
             else:
-                msg2 = f"{password} no fue encontrado, puedes continuar usándolo."
+                msg2 = f"{password} no fue encontrada, puedes continuar usándolo."
                 
                 CTkMessagebox(title="Contraseña segura!", message= msg2, icon="check")
 
