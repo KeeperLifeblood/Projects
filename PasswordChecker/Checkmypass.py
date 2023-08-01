@@ -35,9 +35,6 @@ class App(ctk.CTk):
         self.button.pack(padx=20,pady=20)
 
 
-
-
-
 # Funcines de la App
     def request_api_data(self,query_char):  # Hace el llamado a la API
         url = 'https://api.pwnedpasswords.com/range/' + query_char
