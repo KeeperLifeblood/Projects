@@ -4,11 +4,11 @@ CheckMyPass es una aplicación segura de verificación de contraseñas que te ay
 
 ## Características Clave
 
-    Verificación de Seguridad de Contraseñas: Puedes ingresar tus contraseñas en la aplicación, y CheckMyPass consultará de forma segura la API "Have I Been Pwned" para determinar si la contraseña ha aparecido en alguna brecha de datos conocida de la web.
+Verificación de Seguridad de Contraseñas: Puedes ingresar tus contraseñas en la aplicación, y CheckMyPass consultará de forma segura la API "Have I Been Pwned" para determinar si la contraseña ha aparecido en alguna brecha de datos conocida de la web.
 
-    Confidencialidad: CheckMyPass asegura la privacidad y confidencialidad de las contraseñas de los usuarios mediante el uso de técnicas estándar de hash. Las contraseñas nunca se envían en texto claro a la API, lo que brinda una forma segura y anónima de verificar su integridad.
+Confidencialidad: CheckMyPass asegura la privacidad y confidencialidad de las contraseñas de los usuarios mediante el uso de técnicas estándar de hash. Las contraseñas nunca se envían en texto claro a la API, lo que brinda una forma segura y anónima de verificar su integridad.
 
-    Resultados Claros: La aplicación proporciona resultados claros e informativos, notificando a los usuarios si su contraseña ha sido encontrada en alguna brecha de datos y especificando la cantidad de ocurrencias. Esta información te ayudará a tomar decisiones sobre si debes cambiar tus contraseñas para aumentar la seguridad.
+Resultados Claros: La aplicación proporciona resultados claros e informativos, notificando a los usuarios si su contraseña ha sido encontrada en alguna brecha de datos y especificando la cantidad de ocurrencias. Esta información te ayudará a tomar decisiones sobre si debes cambiar tus contraseñas para aumentar la seguridad.
 
 ## Instalación
 
